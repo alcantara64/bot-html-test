@@ -30,23 +30,24 @@ div[role="status"]{
 }
 /* Button used to open the chat form - fixed at the bottom of the page */
 .open-button {
-  background-color: #1A3265;
+  /* background-color: #1A3265; */
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   opacity: 0.8;
   position: fixed;
-  bottom: 23px;
+  bottom: 10px;
   right: 28px;
-  width: 280px;
+  width: 100px;
   border-radius: 5px;
 }
 	</style>
 	<title>Bot test</title>
 </head>
-<body style="background-color: #5294EA;">
-	<button class="open-button" onclick="openChat()">Chat Bot</button>
+<body onclick="closeChat()" style="background-color: gray; background-image: url('./assests/img/centriqe.png');">
+  <!-- <button class="open-button" onclick="openChat()">Chat Bot</button> -->
+  <img class="open-button" onclick="openChat()" src="./assests/img/bot-image.png" width="30%">
 <div class="container main" id="chatBox" style="order: 3; position: relative; display: none; float: right; width: 400px; min-width: 400px; height: 100%;">
     <div id="webchat">
       <div role="main"></div>
@@ -98,7 +99,10 @@ div[role="status"]{
     <script>
 		function openChat(){
 			document.getElementById("chatBox").style.display = "block";
-		}
+    }
+    function closeChat(){
+     // document.getElementById("chatBox").style.display = "none";
+    }
 		(async function() {
             document.querySelectorAll('[role="main"]')[0].setAttribute("id", "webchat");
 		  var BOT_ID = "uPiVmUQ6Dgc.LDl0d5dhJ2YNSVJCvJL5HpP1xPmsW7z9kEBn1PtTf1A";
