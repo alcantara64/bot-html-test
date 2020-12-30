@@ -1,54 +1,69 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<style>
-		.webchat--css-eotrw-1tdc372.webchat__basic-transcript {
-	background-color: bisque;
-}
-		.main {
-    margin: 18px;
-    border-radius: 4px;
-}
+  <style>
+    .webchat--css-eotrw-1tdc372.webchat__basic-transcript {
+      background-color: bisque;
+    }
 
-div[role="form"]{
-    background-color:#1A3265;
-} 
-div[role="log"]{
-    background: gainsboro;
-}
-div[role="status"]{
-    background: darkgray;
-} 
+    .main {
+      margin: 18px;
+      border-radius: 4px;
+    }
 
-#webchat {
-    position: fixed;
-    height: calc(100% - 135px);
-    z-index: 9999;
-    width: 400px;
-    top: 132px;
-    overflow: hidden;
-}
-/* Button used to open the chat form - fixed at the bottom of the page */
-.open-button {
-  /* background-color: #1A3265; */
-  color: white;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
-  position: fixed;
-  bottom: 10px;
-  right: 28px;
-  width: 100px;
-  border-radius: 5px;
-}
-	</style>
-	<title>Bot test</title>
+    div[role="form"] {
+      background-color: #1A3265;
+    }
+
+    div[role="log"] {
+      background: gainsboro;
+    }
+
+    div[role="status"] {
+      background: darkgray;
+    }
+
+    #webchat {
+      position: fixed;
+      height: calc(100% - 135px);
+      z-index: 9999;
+      width: 400px;
+      top: 132px;
+      overflow: hidden;
+    }
+
+    /* Button used to open the chat form - fixed at the bottom of the page */
+    .open-button {
+      /* background-color: #1A3265; */
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      position: fixed;
+      bottom: 10px;
+      right: 28px;
+      width: 100px;
+      border-radius: 5px;
+    }
+
+  </style>
+  <title>Bot test</title>
 </head>
-<body onclick="closeChat()" style="background-color: gray; background-image: url('./assests/img/centriqe.png');">
+
+<body  style="background-color: gray; background-image: url('./assests/img/centriqe.png');">
   <!-- <button class="open-button" onclick="openChat()">Chat Bot</button> -->
   <img class="open-button" onclick="openChat()" src="./assests/img/bot-image.png" width="30%">
-<div class="container main" id="chatBox" style="order: 3; position: relative; display: none; float: right; width: 400px; min-width: 400px; height: 100%;">
+  <div class="container main" id="chatBox"
+    style="order: 3; position: relative; display: none; float: right; width: 400px; min-width: 400px; height: 100%;">
+    <img onclick="closeChat()" src="./assests/img/close.png" style="position: relative;
+  top: 86px;
+  width: 6%;
+  float: right;
+  z-index: 10000;
+  cursor: grab;
+  ">
     <div id="webchat">
       <div role="main"></div>
     </div>
@@ -94,69 +109,65 @@ div[role="status"]{
     //     document.getElementById('webchat')
     //   )});
 	//   document.querySelector('#webchat > *').focus();
-	
-	</script>
-    <script>
-		function openChat(){
-			document.getElementById("chatBox").style.display = "block";
-    }
-    function closeChat(){
-     // document.getElementById("chatBox").style.display = "none";
-    }
-		(async function() {
-            document.querySelectorAll('[role="main"]')[0].setAttribute("id", "webchat");
-		  var BOT_ID = "uPiVmUQ6Dgc.LDl0d5dhJ2YNSVJCvJL5HpP1xPmsW7z9kEBn1PtTf1A";
-      var theURL = "https://directline.botframework.com/v3/directline/conversations";
-		  const res = await fetch('https://directline.botframework.com/v3/directline/conversations', { method: 'POST',
-		  headers:{
-			Authorization: `Bearer ${BOT_ID}`,
-		  }
-		   });
-		  const { token } = await res.json();
-		  //------------------------------------------------------
-  
-  
-		  const store = window.WebChat.createStore({}, ({ dispatch }) => next => action => {
-			if (action.type === 'DIRECT_LINE/CONNECT_FULFILLED') {
-			  dispatch({
-				type: 'WEB_CHAT/SEND_EVENT',
-				payload: {
-				  name: 'webchat/join',
-				  value: { language: window.navigator.language }
-				}
-			  });
-			}
-  
-			return next(action);
-		  });
-		  const styleSet = window.WebChat.createStyleSet({
-            bubbleBackground: 'rgba(0, 0, 255, .1)',
-            bubbleFromUserBackground: 'rgba(0, 255, 0, .1)'
-         });
-		 const styleOptions = {
-            botAvatarInitials: 'CT',
-         };
 
-         // After generated, you can modify the CSS rules
-         styleSet.textContent = {
-            ...styleSet.textContent,
-            fontFamily: "'Comic Sans MS', 'Arial', sans-serif",
-            fontWeight: 'bold'
-         };
-		  window.WebChat.renderWebChat(
-			{
-			  directLine: window.WebChat.createDirectLine({ token }),
-			  store,
-			  styleSet,
-			  styleOptions
-			},
-			document.getElementById('webchat')
-		  );
-  
-		  document.querySelector('#webchat > *').focus();
-		  console.log('finished ==>');
-		})().catch(err => console.error(err));
-	  </script>
+    </script>
   </div>
+  <script>
+    function openChat() {
+      document.getElementById("chatBox").style.display = "block";
+    }
+    function closeChat() {
+      document.getElementById("chatBox").style.display = "none";
+    }
+    (async function () {
+      document.querySelectorAll('[role="main"]')[0].setAttribute("id", "webchat");
+      var BOT_ID = "uPiVmUQ6Dgc.LDl0d5dhJ2YNSVJCvJL5HpP1xPmsW7z9kEBn1PtTf1A";
+      var theURL = "https://directline.botframework.com/v3/directline/conversations";
+      const res = await fetch('https://directline.botframework.com/v3/directline/conversations', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${BOT_ID}`,
+        }
+      });
+      const { token } = await res.json();
+      //------------------------------------------------------
+
+
+      const store = window.WebChat.createStore({}, ({ dispatch }) => next => action => {
+        if (action.type === 'DIRECT_LINE/CONNECT_FULFILLED') {
+          dispatch({
+            type: 'WEB_CHAT/SEND_EVENT',
+            payload: {
+              name: 'webchat/join',
+              value: { language: window.navigator.language }
+            }
+          });
+        }
+
+        return next(action);
+      });
+      const styleSet = window.WebChat.createStyleSet({
+        bubbleBackground: 'rgba(0, 0, 255, .1)',
+        bubbleFromUserBackground: 'rgba(0, 255, 0, .1)'
+      });
+      const styleOptions = {
+        botAvatarInitials: 'CT',
+      };
+
+      // After generated, you can modify the CSS rules
+      window.WebChat.renderWebChat(
+        {
+          directLine: window.WebChat.createDirectLine({ token }),
+          store,
+          styleSet,
+          styleOptions
+        },
+        document.getElementById('webchat')
+      );
+
+      document.querySelector('#webchat > *').focus();
+    })().catch(err => console.error(err));
+  </script>
 </body>
+
 </html>
