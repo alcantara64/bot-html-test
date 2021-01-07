@@ -54,7 +54,7 @@
 
 <body  style="background-color: gray; background-image: url('./assests/img/centriqe.png');">
   <!-- <button class="open-button" onclick="openChat()">Chat Bot</button> -->
-  <img class="open-button" onclick="openChat()" src="./assests/img/bot-image.png" width="30%">
+  <img class="open-button" id="chatButton" onclick="openChat()" style="display: none;" src="./assests/img/bot-image.png" width="30%">
   <div class="container main" id="chatBox"
     style="order: 3; position: relative; display: none; float: right; width: 400px; min-width: 400px; height: 100%;">
     <img onclick="closeChat()" src="./assests/img/close.png" style="position: relative;
@@ -64,7 +64,7 @@
   z-index: 10000;
   cursor: grab;
   ">
-    <div id="webchat">
+    <div id="webchat" style="border-radius: 15px 15px 0px 0px;">
       <div role="main"></div>
     </div>
     <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
@@ -167,6 +167,9 @@
 
       document.querySelector('#webchat > *').focus();
     })().catch(err => console.error(err));
+    setTimeout(() => {
+      document.getElementById("chatButton").style.display = "block";
+    },20000)
   </script>
 </body>
 
